@@ -248,4 +248,7 @@ npm run data:import
 cd backend
 npm run admin:create
 ```
+db user pass:
+web_admin
+momin1452
 
