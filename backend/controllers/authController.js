@@ -239,6 +239,10 @@ const forgotPassword = async (req, res) => {
 
     res.status(200).json({ message: 'OTP sent to your email' });
   } catch (error) {
+    if (error.code === 'EMAIL_CONFIG_MISSING') {
+      return res.status(503).json({ message: 'Password reset is temporarily unavailable. Please contact support.' });
+    }
+
     res.status(500).json({ message: error.message });
   }
 };
