@@ -143,9 +143,9 @@ docker compose down
 docker compose up --build --no-cache
 ```
 
-### Clean everything (reset data)?
+### Stop containers without deleting data?
 ```bash
-docker compose down -v  # -v removes named volumes
+docker compose down
 ```
 
 ---

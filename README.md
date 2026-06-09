@@ -99,7 +99,7 @@ Recommended configuration:
 NODE_ENV=development
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/e-kinun
-JWT_SECRET=your_super_secret_jwt_key
+JWT_SECRET=your_strong_random_jwt_secret
 ```
 
 ### Variable Notes
@@ -152,9 +152,11 @@ See `DOCKER_SETUP.md` for full details. Quick start:
 ```env
 PORT=5000
 MONGO_URI=mongodb://mongodb:27017/e-kinun
-JWT_SECRET=digicart_super_secret_key_change_in_production
+JWT_SECRET=your_strong_random_jwt_secret
 NODE_ENV=production
 ```
+
+The Docker Compose setup stores MongoDB data in `./mongo_data` on the host, so product, user, order, review, coupon, category, setting, notification, expense, and engagement data survive container restarts and VM reboots.
 
 ---
 
@@ -163,9 +165,9 @@ NODE_ENV=production
 After running the admin script, use:
 
 - **Email:** `admin@clickandpick.com`
-- **Password:** `admin1234` (default from Docker env)
+- **Password:** `set_in_backend_env_or_github_secret`
 
-> **Note:** Change the password after first login for security!
+> **Note:** Set a strong `ADMIN_PASSWORD` in `backend/.env` or deployment secrets before starting the app.
 
 ---
 
@@ -190,7 +192,8 @@ To use the CI/CD pipeline, add the following secrets in your GitHub Repository (
 1. On every **push to `main`**, the workflow builds a Docker image.
 2. It pushes the image to **Docker Hub**.
 3. It connects to your VM via SSH.
-4. It pulls the latest image and restarts the container automatically.
+4. It starts the app container and a persistent MongoDB container with a host-mounted data directory.
+5. It pulls the latest image and restarts the app container automatically.
 
 ---
 

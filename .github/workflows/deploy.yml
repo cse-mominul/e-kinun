@@ -43,18 +43,34 @@ jobs:
 
             # Latest image pull kora
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mern-app:latest
+
+            # Persistent MongoDB container and network ensure kora
+            docker network create e-kinun-network || true
+            mkdir -p /opt/e-kinun/mongo-data
+
+            docker stop e-kinun-mongodb || true
+            docker rm e-kinun-mongodb || true
+            docker run -d \
+              --name e-kinun-mongodb \
+              --network e-kinun-network \
+              --restart always \
+              -e MONGO_INITDB_ROOT_USERNAME=admin \
+              -e MONGO_INITDB_ROOT_PASSWORD=eKinunMongo!2026#Secure91 \
+              -e MONGO_INITDB_DATABASE=database \
+              -v /opt/e-kinun/mongo-data:/data/db \
+              mongo:4.4.29
             
             # Purono container thakle seta bondho o remove kora
-            docker stop mern-app || true
-            docker rm mern-app || true
+            docker stop e-kinun-app || true
+            docker rm e-kinun-app || true
             
             # Notoon container run kora
             docker run -d \
-              --name mern-app \
-              --network="host" \
+              --name e-kinun-app \
+              --network e-kinun-network \
               --restart always \
               -e PORT=5000 \
-              -e MONGO_URI="${{ secrets.MONGO_URI }}" \
+              -e MONGO_URI="mongodb://admin:eKinunMongo!2026%23Secure91@e-kinun-mongodb:27017/database?authSource=admin" \
               -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \
               -e NODE_ENV=production \
               ${{ secrets.DOCKERHUB_USERNAME }}/mern-app:latest
