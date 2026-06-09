@@ -270,11 +270,15 @@ const resetPassword = async (req, res) => {
 // @desc  Google Login
 // @route POST /api/auth/google-login
 const googleLogin = async (req, res) => {
-  const { name, email, photo } = req.body;
+  const name = String(req.body?.name || '').trim();
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const photo = String(req.body?.photo || '').trim();
 
   if (!email) {
     return res.status(400).json({ message: 'Email is required from Google' });
   }
+
+  const displayName = name || email.split('@')[0] || 'Google User';
 
   try {
     let user = await User.findOne({ email });
@@ -284,17 +288,17 @@ const googleLogin = async (req, res) => {
       // We use a random password for Google users since they won't use it
       const randomPassword = Math.random().toString(36).slice(-10) + 'A1!';
       user = await User.create({
-        name,
+        name: displayName,
         email,
         password: randomPassword,
         isVerified: true, // Google users are pre-verified
       });
 
       await createNotification({
-        type: 'registration',
+        type: 'login',
         title: 'New User via Google',
-        message: `${name} registered using Google`,
-        actorName: name,
+        message: `${displayName} registered using Google`,
+        actorName: displayName,
         actorEmail: email,
         actorUserId: user._id,
       });
@@ -323,10 +327,12 @@ const googleLogin = async (req, res) => {
       name: user.name,
       email: user.email,
       phone: user.phone,
+      photo,
       role: user.role,
       token: generateToken(user._id),
     });
   } catch (error) {
+    console.error('[GOOGLE LOGIN] Failed:', error);
     res.status(500).json({ message: error.message });
   }
 };
