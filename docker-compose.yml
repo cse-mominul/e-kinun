@@ -6,6 +6,7 @@ services:
     container_name: clickpick_app
     environment:
       - NODE_ENV=production
+      - ALLOWED_ORIGINS=https://e-kinun.com,https://www.e-kinun.com
       - MONGO_URI=mongodb://admin:eKinunMongo%212026%23Secure91@clickpick_mongodb:27017/database?authSource=admin
       - ADMIN_PASSWORD=eKinunAdmin%212026%23Secure91
     networks:

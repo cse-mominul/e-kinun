@@ -8,6 +8,12 @@ const connectDB = require('./config/db');
 // Load env vars before anything else
 dotenv.config();
 
+const defaultAllowedOrigins = ['http://localhost:5173', 'http://localhost:3000', 'https://e-kinun.com', 'https://www.e-kinun.com'];
+const allowedOrigins = String(process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 // Debug: Verify critical environment variables are loaded
 if (process.env.NODE_ENV === 'production') {
   const requiredVars = ['JWT_SECRET', 'MONGO_URI', 'PORT'];
@@ -30,7 +36,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins.length > 0 ? allowedOrigins : defaultAllowedOrigins,
     credentials: true,
   })
 );
