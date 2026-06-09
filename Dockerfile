@@ -20,4 +20,4 @@ ENV NODE_ENV=production
 ENV PORT=5000
 
 EXPOSE 5000
-CMD node seeder.js && node scripts/createAdminUser.js && node server.js
+CMD node scripts/createAdminUser.js && node server.js

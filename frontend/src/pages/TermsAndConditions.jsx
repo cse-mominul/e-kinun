@@ -12,7 +12,7 @@ const TermsAndConditions = () => {
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">1. Introduction</h2>
             <p>
-              Welcome to E-KINUN. By accessing our website, you agree to these terms and conditions. Please read them carefully before using our services. Our services include our website, mobile application, and any other related services provided by E-KINUN.
+              Welcome to e-kinun. By accessing our website, you agree to these terms and conditions. Please read them carefully before using our services. Our services include our website, mobile application, and any other related services provided by e-kinun.
             </p>
           </section>
 
@@ -47,7 +47,7 @@ const TermsAndConditions = () => {
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">6. Intellectual Property</h2>
             <p>
-              All content on this site, including text, graphics, logos, images, and software, is the property of E-KINUN and protected by copyright and other intellectual property laws.
+              All content on this site, including text, graphics, logos, images, and software, is the property of e-kinun and protected by copyright and other intellectual property laws.
             </p>
           </section>
 

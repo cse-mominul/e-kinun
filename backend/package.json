@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "data:import": "node seeder.js",
     "admin:create": "node scripts/createAdminUser.js"
   },
   "dependencies": {

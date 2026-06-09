@@ -46,7 +46,7 @@ const HeroSlider = () => {
 
   if (loading) {
     return (
-      <section className="rounded-none sm:rounded-2xl overflow-hidden mb-8 bg-gray-200 dark:bg-gray-800 aspect-[2/1] sm:h-80 md:h-96 lg:h-[450px] animate-pulse -mx-3 sm:mx-0" />
+      <section className="rounded-none sm:rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-200 dark:bg-gray-800 aspect-[2/1] sm:h-80 md:h-96 lg:h-[450px] animate-pulse -mx-4 sm:mx-0" />
     );
   }
 
@@ -68,12 +68,12 @@ const HeroSlider = () => {
           alt={activeSlide?.title || 'Campaign Banner'}
           className="w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out"
           onError={(e) => {
-            e.target.src = isMobile 
-              ? 'https://placehold.co/800x400?text=Summer+Sale' 
+            e.target.src = isMobile
+              ? 'https://placehold.co/800x400?text=Summer+Sale'
               : 'https://placehold.co/1200x450?text=Summer+Sale';
           }}
         />
-        
+
         {/* Overlay for better text readability if needed (optional) */}
         <div className="absolute inset-0 bg-black/5" />
       </div>
@@ -84,11 +84,10 @@ const HeroSlider = () => {
           <button
             key={idx}
             onClick={() => setActiveIndex(idx)}
-            className={`transition-all duration-300 rounded-full ${
-              idx === activeIndex
+            className={`transition-all duration-300 rounded-full ${idx === activeIndex
                 ? 'w-6 h-1.5 bg-white'
                 : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/80'
-            }`}
+              }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
         ))}

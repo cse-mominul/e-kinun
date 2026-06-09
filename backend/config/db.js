@@ -10,7 +10,7 @@ const connectDB = async (retries = 10, delay = 3000) => {
   for (let i = 0; i < retries; i++) {
     try {
       await mongoose.connect(process.env.MONGO_URI);
-      console.log('✅ MongoDB Connected locally for DigiCart');
+      console.log('✅ MongoDB Connected locally for e-kinun');
       return;
     } catch (error) {
       console.error(

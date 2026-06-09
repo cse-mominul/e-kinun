@@ -173,7 +173,7 @@ const AdminLayout = () => {
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-3 border-b border-gray-700 min-h-[56px]">
             {sidebarOpen && (
-              <span className="text-base font-bold text-indigo-400 truncate">DigiCart Admin</span>
+              <span className="text-base font-bold text-indigo-400 truncate">e-kinun Admin</span>
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}

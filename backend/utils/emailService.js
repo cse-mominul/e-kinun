@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (options) => {
   const mailOptions = {
-    from: `"E-KINUN" <${process.env.EMAIL_USER}>`,
+    from: `"e-kinun" <${process.env.EMAIL_USER}>`,
     to: options.email,
     subject: options.subject,
     text: options.message,
@@ -26,7 +26,7 @@ const sendOTP = async (email, otp, type = 'verification') => {
   
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e1e1e1; rounded-2xl;">
-      <h2 style="color: #2563eb; text-align: center;">E-KINUN</h2>
+      <h2 style="color: #2563eb; text-align: center;">e-kinun</h2>
       <p>Hello,</p>
       <p>Your OTP for <strong>${type === 'verification' ? 'email verification' : 'password reset'}</strong> is:</p>
       <div style="text-align: center; margin: 30px 0;">
@@ -36,7 +36,7 @@ const sendOTP = async (email, otp, type = 'verification') => {
       </div>
       <p>This OTP is valid for <strong>10 minutes</strong>. If you did not request this, please ignore this email.</p>
       <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-      <p style="font-size: 12px; color: #666; text-align: center;">© 2025 E-KINUN. All rights reserved.</p>
+      <p style="font-size: 12px; color: #666; text-align: center;">© 2026 e-kinun. All rights reserved.</p>
     </div>
   `;
 

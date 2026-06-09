@@ -1,4 +1,4 @@
-# DigiCart
+# e-kinun
 
 A modern MERN stack e-commerce platform with a minimalist glassmorphism UI, modular architecture, BDT (৳) currency formatting, and practical inventory management workflows.
 
@@ -28,7 +28,7 @@ A modern MERN stack e-commerce platform with a minimalist glassmorphism UI, modu
 ## Project Structure
 
 ```text
-DigiCart/
+e-kinun/
 ├── backend/
 │   ├── config/
 │   ├── controllers/
@@ -36,7 +36,6 @@ DigiCart/
 │   ├── models/
 │   ├── routes/
 │   ├── scripts/
-│   ├── seeder.js
 │   └── server.js
 └── frontend/
     ├── src/
@@ -53,7 +52,7 @@ DigiCart/
 
 ```bash
 git clone <your-repo-url>
-cd digicart
+cd e-kinun
 ```
 
 ### 2) Install dependencies
@@ -99,7 +98,7 @@ Recommended configuration:
 ```env
 NODE_ENV=development
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/digicart
+MONGO_URI=mongodb://127.0.0.1:27017/e-kinun
 JWT_SECRET=your_super_secret_jwt_key
 ```
 
@@ -114,7 +113,6 @@ JWT_SECRET=your_super_secret_jwt_key
 ### Backend (`backend/package.json`)
 - `npm run dev` — Start server with nodemon.
 - `npm start` — Start server with Node.
-- `npm run data:import` — Seed demo users/products.
 - `npm run admin:create` — Create or update admin user.
 
 ### Frontend (`frontend/package.json`)
@@ -147,13 +145,13 @@ See `DOCKER_SETUP.md` for full details. Quick start:
     docker compose up --build
     ```
 3. **Access Your App**
-    - Visit `http://localhost` in your browser (Port 80).
-    - API: http://localhost/api
+   - Visit `http://localhost:5000` in your browser.
+   - API: `http://localhost:5000/api`
 
 **Sample backend/.env:**
 ```env
 PORT=5000
-MONGO_URI=mongodb://mongodb:27017/digicart
+MONGO_URI=mongodb://mongodb:27017/e-kinun
 JWT_SECRET=digicart_super_secret_key_change_in_production
 NODE_ENV=production
 ```
@@ -162,31 +160,12 @@ NODE_ENV=production
 
 ## Default Admin Credentials
 
-After seeding or running the admin script, use:
+After running the admin script, use:
 
 - **Email:** `admin@clickandpick.com`
-- **Password:** `admin123` (default from seeder)
-- **Alt Password:** `password123` (if created via `npm run admin:create`)
+- **Password:** `admin1234` (default from Docker env)
 
 > **Note:** Change the password after first login for security!
-
----
-
-## ☁️ Apache CloudStack Deployment
-
-To deploy this application on an Apache CloudStack Virtual Machine:
-
-1. **Provision Ubuntu VM:** Create a new Ubuntu instance in your CloudStack dashboard.
-2. **Access & Security:** 
-   - Assign a **Public IP**.
-   - Open ports **8899** (SSH) and **80** (Nginx/Web) in the Security Groups.
-3. **Environment Setup:** SSH into your VM and install Docker:
-   ```bash
-   sudo apt update
-   sudo apt install -y docker.io docker-compose
-   sudo systemctl enable --now docker
-   ```
-4. **Deploy:** Use Docker Compose or the GitHub Actions workflow below.
 
 ---
 
@@ -210,38 +189,12 @@ To use the CI/CD pipeline, add the following secrets in your GitHub Repository (
 ### How it works
 1. On every **push to `main`**, the workflow builds a Docker image.
 2. It pushes the image to **Docker Hub**.
-3. It connects to your **CloudStack VM via SSH** (Port 8899).
+3. It connects to your VM via SSH.
 4. It pulls the latest image and restarts the container automatically.
 
 ---
 
-## 🔒 SSL Setup (Free SSL with Certbot)
-
-To secure your application with HTTPS using Let's Encrypt:
-
-1. **Prerequisite:** Point your domain (e.g., `example.com`) to your VM's Public IP.
-2. **Install Certbot:** SSH into your VM and run:
-   ```bash
-   sudo apt install certbot python3-certbot-nginx -y
-   ```
-3. **Generate Certificate:**
-   ```bash
-   sudo certbot --nginx -d yourdomain.com
-   ```
-4. **Auto-Renewal:** Certbot automatically sets up a cron job for renewal. You can test it with:
-   ```bash
-   sudo certbot renew --dry-run
-   ```
-
----
-
 ## Useful Commands
-
-**Seed demo data:**
-```bash
-cd backend
-npm run data:import
-```
 
 **Create/Update admin user:**
 ```bash

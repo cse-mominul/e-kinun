@@ -1,4 +1,4 @@
-# Docker Setup Guide for DigiCart (MERN)
+# Docker Setup Guide for e-kinun (MERN)
 
 ## JWT Environment Variable Issue - FIXED ✅
 
@@ -21,7 +21,7 @@ When the container starts, you'll see logs like:
 ✅ All required env variables loaded successfully
 📦 Environment: NODE_ENV=production
 📦 JWT_SECRET loaded: YES
-📦 MONGO_URI: mongodb://mongodb:27017/digicart
+📦 MONGO_URI: mongodb://mongodb:27017/e-kinun
 ```
 
 If anything is missing:
@@ -31,7 +31,7 @@ If anything is missing:
 
 ### 3. **Variables in Production Docker**
 - `JWT_SECRET` → Loaded from `backend/.env` ✅
-- `MONGO_URI` → Overridden to `mongodb://mongodb:27017/digicart` (Docker internal network) ✅
+- `MONGO_URI` → Overridden to `mongodb://mongodb:27017/e-kinun` (Docker internal network) ✅
 - `PORT` → Set to `5000` (exposed as `8080` on host machine) ✅
 - `NODE_ENV` → Set to `production` ✅
 
@@ -44,13 +44,13 @@ If anything is missing:
 # backend/.env should have:
 PORT=5000
 JWT_SECRET=digicart_super_secret_key_change_in_production
-MONGO_URI=mongodb://127.0.0.1:27017/digicart  # Local development
+MONGO_URI=mongodb://127.0.0.1:27017/e-kinun  # Local development
 NODE_ENV=development
 ```
 
 ### Step 2: Build and start containers
 ```bash
-cd d:\Vs Soft\digicart
+cd d:\Vs Soft\e-kinun
 docker compose up --build
 ```
 
@@ -66,8 +66,8 @@ You should see:
 ```
 
 ### Step 4: Access your app
-- Frontend: `http://localhost:8080`
-- API: `http://localhost:8080/api`
+- App: `http://localhost:5000`
+- API: `http://localhost:5000/api`
 - MongoDB: Runs inside container (not exposed for security)
 
 ---
@@ -77,13 +77,13 @@ You should see:
 When container is running:
 ```bash
 # Check environment variables inside app container
-docker exec digicart_app env | grep -E "JWT_SECRET|MONGO_URI|NODE_ENV"
+docker exec e-kinun_app env | grep -E "JWT_SECRET|MONGO_URI|NODE_ENV"
 ```
 
 Output should show:
 ```
 JWT_SECRET=digicart_super_secret_key_change_in_production
-MONGO_URI=mongodb://mongodb:27017/digicart
+MONGO_URI=mongodb://mongodb:27017/e-kinun
 NODE_ENV=production
 ```
 
@@ -116,7 +116,7 @@ In `docker-compose.yml`, you can override specific variables:
 environment:
   - NODE_ENV=production
   - PORT=5000
-  - MONGO_URI=mongodb://mongodb:27017/digicart
+  - MONGO_URI=mongodb://mongodb:27017/e-kinun
   - JWT_SECRET=custom_value_here  # ⚠️ Only for testing, not secure!
 ```
 
@@ -150,7 +150,7 @@ docker compose down -v  # -v removes named volumes
 
 ---
 
-## Files Changed
+### Files Changed
 
 ✅ `docker-compose.yml` - Added `env_file: ./backend/.env`  
 ✅ `backend/server.js` - Added environment variable debugging logs  

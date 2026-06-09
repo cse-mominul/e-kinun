@@ -31,15 +31,15 @@ const ensureDefaultSettings = async () => {
       outsideDhakaCharge: 120,
       contactAddress: '125 Market Street, Gulshan Avenue, Dhaka 1212',
       contactPhone: '+880 1700-123456',
-      supportEmail: 'support@digicart.com',
-      salesEmail: 'sales@digicart.com',
-      siteTitle: 'DigiCart',
+      supportEmail: 'support@e-kinun.com',
+      salesEmail: 'sales@e-kinun.com',
+      siteTitle: 'e-kinun',
       siteLogoUrl: '',
       faviconUrl: '',
-      siteSlogan: 'Rebranded Sellzy',
-      footerCopyrightText: '© 2026 DigiCart. All rights reserved.',
-      siteDescription: 'DigiCart helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
-      siteWebsiteUrl: 'www.digicart.com',
+      siteSlogan: 'Your trusted shopping destination',
+      footerCopyrightText: '© 2026 e-kinun. All rights reserved.',
+      siteDescription: 'e-kinun helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
+      siteWebsiteUrl: 'www.e-kinun.com',
       facebookPixelId: '',
       facebookPixelEnabled: false,
       whatsappChatEnabled: true,
@@ -135,7 +135,7 @@ const updateSettings = async (req, res) => {
     const resolvedSiteTitle =
       typeof siteTitle === 'string' && siteTitle.trim()
         ? siteTitle.trim()
-        : existingSettings.siteTitle || 'DigiCart';
+        : existingSettings.siteTitle || 'e-kinun';
     const resolvedSiteLogoUrl =
       typeof siteLogoUrl === 'string'
         ? siteLogoUrl.trim()
@@ -147,19 +147,19 @@ const updateSettings = async (req, res) => {
     const resolvedSiteSlogan =
       typeof siteSlogan === 'string' && siteSlogan.trim()
         ? siteSlogan.trim()
-        : existingSettings.siteSlogan || 'Rebranded Sellzy';
+        : existingSettings.siteSlogan || 'Your trusted shopping destination';
     const resolvedFooterCopyrightText =
       typeof footerCopyrightText === 'string' && footerCopyrightText.trim()
         ? footerCopyrightText.trim()
-        : existingSettings.footerCopyrightText || '© 2026 DigiCart. All rights reserved.';
+        : existingSettings.footerCopyrightText || '© 2026 e-kinun. All rights reserved.';
     const resolvedSiteDescription =
       typeof siteDescription === 'string' && siteDescription.trim()
         ? siteDescription.trim()
-        : existingSettings.siteDescription || 'DigiCart helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.';
+        : existingSettings.siteDescription || 'e-kinun helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.';
     const resolvedSiteWebsiteUrl =
       typeof siteWebsiteUrl === 'string' && siteWebsiteUrl.trim()
         ? siteWebsiteUrl.trim()
-        : existingSettings.siteWebsiteUrl || 'www.digicart.com';
+        : existingSettings.siteWebsiteUrl || 'www.e-kinun.com';
     const resolvedFacebookPixelId =
       typeof facebookPixelId === 'string'
         ? facebookPixelId.trim()

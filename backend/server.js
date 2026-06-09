@@ -48,7 +48,7 @@ app.use('/api/engagement', require('./routes/engagementRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
 // Health check
-app.get('/api/health', (req, res) => res.json({ message: 'DigiCart API is running' }));
+app.get('/api/health', (req, res) => res.json({ message: 'e-kinun API is running' }));
 
 if (process.env.NODE_ENV === 'production') {
   const staticPath = path.join(__dirname, 'public');
@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === 'production') {
     return res.sendFile(path.join(staticPath, 'index.html'));
   });
 } else {
-  app.get('/', (req, res) => res.json({ message: 'DigiCart API is running' }));
+  app.get('/', (req, res) => res.json({ message: 'e-kinun API is running' }));
 }
 
 const PORT = process.env.PORT || 5000;

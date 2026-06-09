@@ -39,7 +39,7 @@ const Navbar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [categoryLinks, setCategoryLinks] = useState(['All']);
   const [siteBranding, setSiteBranding] = useState({
-    siteTitle: 'DigiCart',
+    siteTitle: 'e-kinun',
   });
   const accountRef = useRef(null);
   const searchRef = useRef(null);
@@ -132,7 +132,7 @@ const Navbar = () => {
       try {
         const { data } = await API.get('/settings');
         setSiteBranding({
-          siteTitle: data?.siteTitle || 'DigiCart',
+          siteTitle: data?.siteTitle || 'e-kinun',
         });
       } catch (error) {
         console.error('Failed to fetch site branding:', error);

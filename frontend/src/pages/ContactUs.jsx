@@ -6,8 +6,8 @@ const ContactUs = () => {
   const [contactInfo, setContactInfo] = useState({
     contactAddress: '125 Market Street, Gulshan Avenue, Dhaka 1212',
     contactPhone: '+880 1700-123456',
-    supportEmail: 'support@digicart.com',
-    siteWebsiteUrl: 'www.digicart.com',
+    supportEmail: 'support@e-kinun.com',
+    siteWebsiteUrl: 'www.e-kinun.com',
   });
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const ContactUs = () => {
         setContactInfo({
           contactAddress: data?.contactAddress || '125 Market Street, Gulshan Avenue, Dhaka 1212',
           contactPhone: data?.contactPhone || '+880 1700-123456',
-          supportEmail: data?.supportEmail || 'support@digicart.com',
-          siteWebsiteUrl: data?.siteWebsiteUrl || 'www.digicart.com',
+          supportEmail: data?.supportEmail || 'support@e-kinun.com',
+          siteWebsiteUrl: data?.siteWebsiteUrl || 'www.e-kinun.com',
         });
       } catch (error) {
         console.error('Failed to fetch contact settings:', error);

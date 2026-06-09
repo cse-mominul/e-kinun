@@ -28,13 +28,13 @@ const Settings = () => {
     outsideDhakaCharge: 120,
     contactAddress: '125 Market Street, Gulshan Avenue, Dhaka 1212',
     contactPhone: '+880 1700-123456',
-    supportEmail: 'support@digicart.com',
-    salesEmail: 'sales@digicart.com',
-    siteTitle: 'DigiCart',
-    siteSlogan: 'Rebranded Sellzy',
-    footerCopyrightText: '© 2026 DigiCart. All rights reserved.',
-    siteDescription: 'DigiCart helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
-    siteWebsiteUrl: 'www.digicart.com',
+    supportEmail: 'support@e-kinun.com',
+    salesEmail: 'sales@e-kinun.com',
+    siteTitle: 'e-kinun',
+    siteSlogan: 'Your trusted shopping destination',
+    footerCopyrightText: '© 2026 e-kinun. All rights reserved.',
+    siteDescription: 'e-kinun helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
+    siteWebsiteUrl: 'www.e-kinun.com',
     facebookPixelId: '',
     facebookPixelEnabled: false,
     whatsappNumber: '+8801700123456',
@@ -70,13 +70,13 @@ const Settings = () => {
           outsideDhakaCharge: Number(data?.outsideDhakaCharge) || 120,
           contactAddress: data?.contactAddress || '125 Market Street, Gulshan Avenue, Dhaka 1212',
           contactPhone: data?.contactPhone || '+880 1700-123456',
-          supportEmail: data?.supportEmail || 'support@digicart.com',
-          salesEmail: data?.salesEmail || 'sales@digicart.com',
-          siteTitle: data?.siteTitle || 'DigiCart',
-          siteSlogan: data?.siteSlogan || 'Rebranded Sellzy',
-          footerCopyrightText: data?.footerCopyrightText || '© 2026 DigiCart. All rights reserved.',
-          siteDescription: data?.siteDescription || 'DigiCart helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
-          siteWebsiteUrl: data?.siteWebsiteUrl || 'www.digicart.com',
+          supportEmail: data?.supportEmail || 'support@e-kinun.com',
+          salesEmail: data?.salesEmail || 'sales@e-kinun.com',
+          siteTitle: data?.siteTitle || 'e-kinun',
+          siteSlogan: data?.siteSlogan || 'Your trusted shopping destination',
+          footerCopyrightText: data?.footerCopyrightText || '© 2026 e-kinun. All rights reserved.',
+          siteDescription: data?.siteDescription || 'e-kinun helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
+          siteWebsiteUrl: data?.siteWebsiteUrl || 'www.e-kinun.com',
           facebookPixelId: data?.facebookPixelId || '',
           facebookPixelEnabled: Boolean(data?.facebookPixelEnabled),
           whatsappChatEnabled: typeof data?.whatsappChatEnabled === 'boolean' ? data.whatsappChatEnabled : true,
@@ -896,7 +896,7 @@ const Settings = () => {
                     onChange={(event) =>
                       setSettingsForm((prev) => ({ ...prev, footerCopyrightText: event.target.value }))
                     }
-                    placeholder="© 2026 DigiCart. All rights reserved."
+                    placeholder="© 2026 e-kinun. All rights reserved."
                     className="w-full rounded-xl border border-gray-700 bg-gray-800 text-white px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
@@ -922,7 +922,7 @@ const Settings = () => {
                     onChange={(event) =>
                       setSettingsForm((prev) => ({ ...prev, siteWebsiteUrl: event.target.value }))
                     }
-                    placeholder="www.digicart.com"
+                    placeholder="www.e-kinun.com"
                     className="w-full rounded-xl border border-gray-700 bg-gray-800 text-white px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>

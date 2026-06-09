@@ -24,17 +24,17 @@ const settingSchema = new mongoose.Schema(
     },
     supportEmail: {
       type: String,
-      default: 'support@digicart.com',
+      default: 'support@e-kinun.com',
       trim: true,
     },
     salesEmail: {
       type: String,
-      default: 'sales@digicart.com',
+      default: 'sales@e-kinun.com',
       trim: true,
     },
     siteTitle: {
       type: String,
-      default: 'DigiCart',
+      default: 'e-kinun',
       trim: true,
     },
     siteLogoUrl: {
@@ -49,22 +49,22 @@ const settingSchema = new mongoose.Schema(
     },
     siteSlogan: {
       type: String,
-      default: 'Rebranded Sellzy',
+      default: 'Your trusted shopping destination',
       trim: true,
     },
     footerCopyrightText: {
       type: String,
-      default: '© 2026 DigiCart. All rights reserved.',
+      default: '© 2026 e-kinun. All rights reserved.',
       trim: true,
     },
     siteDescription: {
       type: String,
-      default: 'DigiCart helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
+      default: 'e-kinun helps modern shoppers discover top-rated products at honest prices, fast delivery, and smooth checkout experiences.',
       trim: true,
     },
     siteWebsiteUrl: {
       type: String,
-      default: 'www.digicart.com',
+      default: 'www.e-kinun.com',
       trim: true,
     },
     couponCode: {

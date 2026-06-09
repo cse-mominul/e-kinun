@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
                 <ul className="list-disc pl-5 space-y-2">
                   <li><strong>Account</strong> – a unique account created for you to access our Service.</li>
                   <li><strong>Affiliate</strong> – an entity related through control or ownership.</li>
-                  <li><strong>Company</strong> – E-kinun.com</li>
+                  <li><strong>Company</strong> – e-kinun</li>
                   <li><strong>Cookies</strong> – small files stored on your device by a website.</li>
                   <li><strong>Country</strong> – Bangladesh</li>
                   <li><strong>Device</strong> – any device like a computer, mobile, or tablet.</li>
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
                   <li><strong>Service Provider</strong> – third parties processing data on behalf of the Company.</li>
                   <li><strong>Third-party Social Media Service</strong> – social networks for login/registration.</li>
                   <li><strong>Usage Data</strong> – data collected automatically from service usage.</li>
-                  <li><strong>Website</strong> – E-KINUN, www.e-kinun.com</li>
+                  <li><strong>Website</strong> – e-kinun, www.e-kinun.com</li>
                   <li><strong>You</strong> – the user accessing or using the Service.</li>
                 </ul>
               </div>
