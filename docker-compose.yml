@@ -4,12 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: clickpick_app
+    env_file:
+      - ./backend/.env
     environment:
       - NODE_ENV=production
       - ALLOWED_ORIGINS=https://e-kinun.com,https://www.e-kinun.com
       - MONGO_URI=mongodb://admin:eKinunMongo%212026%23Secure91@clickpick_mongodb:27017/database?authSource=admin
-      - EMAIL_USER=${EMAIL_USER}
-      - EMAIL_PASS=${EMAIL_PASS}
       - ADMIN_PASSWORD=eKinunAdmin%212026%23Secure91
     networks:
       - app-network
