@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { auth, googleProvider } from '../config/firebase';
-import { signInWithPopup } from 'firebase/auth';
+import { getRedirectResult, signInWithRedirect } from 'firebase/auth';
+import { clearGoogleAuthIntent, getGoogleAuthIntent, setGoogleAuthIntent } from '../utils/googleAuth';
 
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
@@ -12,6 +13,38 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const completeGoogleRegistration = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+
+        if (!result?.user) {
+          return;
+        }
+
+        const user = result.user;
+        const intent = getGoogleAuthIntent();
+
+        const { data } = await API.post('/auth/google-login', {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        });
+
+        clearGoogleAuthIntent();
+        login(data);
+        toast.success(intent === 'login' ? 'Login successful with Google!' : 'Registration successful with Google!');
+        navigate('/');
+      } catch (error) {
+        if (error?.code !== 'auth/no-auth-event') {
+          console.error('Google redirect registration error:', error);
+        }
+      }
+    };
+
+    completeGoogleRegistration();
+  }, [login, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,18 +63,8 @@ const Register = () => {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-
-      const { data } = await API.post('/auth/google-login', {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-      });
-
-      login(data);
-      toast.success('Registration successful with Google!');
-      navigate('/');
+      setGoogleAuthIntent('register');
+      await signInWithRedirect(auth, googleProvider);
     } catch (error) {
       console.error('Google registration error:', error);
       toast.error(error.message || 'Google registration failed');

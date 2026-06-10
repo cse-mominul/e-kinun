@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logoLight from '../assets/logo-light.jpeg';
 import logoDark from '../assets/logo-dark.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,8 @@ import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { auth, googleProvider } from '../config/firebase';
-import { signInWithPopup } from 'firebase/auth';
+import { getRedirectResult, signInWithRedirect } from 'firebase/auth';
+import { clearGoogleAuthIntent, getGoogleAuthIntent, setGoogleAuthIntent } from '../utils/googleAuth';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -14,6 +15,38 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const completeGoogleLogin = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+
+        if (!result?.user) {
+          return;
+        }
+
+        const user = result.user;
+        const intent = getGoogleAuthIntent();
+
+        const { data } = await API.post('/auth/google-login', {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        });
+
+        clearGoogleAuthIntent();
+        login(data);
+        toast.success(intent === 'register' ? 'Registration successful with Google!' : 'Login successful with Google!');
+        navigate(data.role === 'admin' ? '/admin' : '/');
+      } catch (error) {
+        if (error?.code !== 'auth/no-auth-event') {
+          console.error('Google redirect login error:', error);
+        }
+      }
+    };
+
+    completeGoogleLogin();
+  }, [login, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,19 +71,8 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-
-      // Send Google user info to backend
-      const { data } = await API.post('/auth/google-login', {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-      });
-
-      login(data);
-      toast.success('Login successful with Google!');
-      navigate(data.role === 'admin' ? '/admin' : '/');
+      setGoogleAuthIntent('login');
+      await signInWithRedirect(auth, googleProvider);
     } catch (error) {
       console.error('Google login error:', error);
       toast.error(error.message || 'Google login failed');
